@@ -13,7 +13,7 @@
 
   <ng-container matColumnDef="limit">
     <mat-header-cell *matHeaderCellDef>Limit [PLN]</mat-header-cell>
-    <mat-cell *matCellDef="let storm">{{storm.max | number:'1.2'}}</mat-cell>
+    <mat-cell *matCellDef="let storm">{{storm.max / 2 | number:'1.2'}}</mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="pool">

@@ -1,5 +1,5 @@
 <h4>Historia zdarzeń</h4>
 
 <mat-list>
-  <mat-list-item *ngFor="let winner of data">Użytkownik o id {{winner.ticket.userId}} wygrał {{winner.storm.max}} PLN.</mat-list-item>
+  <mat-list-item *ngFor="let winner of data">Użytkownik o id {{winner.ticket.userId}} wygrał {{winner.storm.max / 2 | number:'1.2'}} PLN.</mat-list-item>
 </mat-list>

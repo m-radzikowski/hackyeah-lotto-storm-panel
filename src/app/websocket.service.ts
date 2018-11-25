@@ -14,12 +14,12 @@ export class WebsocketService {
   private winners = new Subject<Winner>();
 
   constructor() {
-    console.log('connecting websocket');
     this.socket = new WebSocket('ws://localhost:90/storm?web');
 
     const self = this;
     this.socket.onmessage = function (event) {
       const data = JSON.parse(event.data);
+      console.log(data);
       if (Array.isArray(data)) {
         self.storms.next(data);
       } else {
