@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Observable, Subject} from 'rxjs';
 import {Storm} from './model/storm.type';
+import {Winner} from './model/winner.type';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +11,7 @@ export class WebsocketService {
   private socket: WebSocket;
 
   private storms = new Subject<Storm[]>();
+  private winners = new Subject<Winner>();
 
   constructor() {
     console.log('connecting websocket');
@@ -17,12 +19,20 @@ export class WebsocketService {
 
     const self = this;
     this.socket.onmessage = function (event) {
-      const data = JSON.parse(event.data) as Storm[];
-      self.storms.next(data);
+      const data = JSON.parse(event.data);
+      if (Array.isArray(data)) {
+        self.storms.next(data);
+      } else {
+        self.winners.next(data);
+      }
     };
   }
 
   getStorms(): Observable<Storm[]> {
     return this.storms.asObservable();
+  }
+
+  getWinners(): Observable<Winner> {
+    return this.winners.asObservable();
   }
 }

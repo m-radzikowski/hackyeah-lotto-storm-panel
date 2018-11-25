@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {WebsocketService} from '../websocket.service';
+import {Winner} from '../model/winner.type';
 
 @Component({
   selector: 'app-events-history',
@@ -8,13 +9,19 @@ import {WebsocketService} from '../websocket.service';
 })
 export class EventsHistoryComponent implements OnInit {
 
+  private _data: Winner[] = [];
+
   constructor(private websocket: WebsocketService) {
   }
 
   ngOnInit() {
-    this.websocket.getStorms().subscribe(storms => {
-      console.log(storms);
+    this.websocket.getWinners().subscribe(winner => {
+      this._data.push(winner);
     });
+  }
+
+  get data() {
+    return this._data.reverse();
   }
 
 }
