@@ -1,0 +1,31 @@
+<h4>Aktywne burze: {{dataSource.length}}</h4>
+
+<mat-table [dataSource]="dataSource">
+  <ng-container matColumnDef="lat">
+    <mat-header-cell *matHeaderCellDef>Szerokość geo.</mat-header-cell>
+    <mat-cell *matCellDef="let storm">{{storm.lat | number:'1.8'}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="lng">
+    <mat-header-cell *matHeaderCellDef>Długość geo.</mat-header-cell>
+    <mat-cell *matCellDef="let storm">{{storm.lng | number:'1.8'}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="limit">
+    <mat-header-cell *matHeaderCellDef>Limit [PLN]</mat-header-cell>
+    <mat-cell *matCellDef="let storm">{{storm.max | number:'1.2'}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="pool">
+    <mat-header-cell *matHeaderCellDef>Pula [PLN]</mat-header-cell>
+    <mat-cell *matCellDef="let storm">{{storm.current / 2 | number:'1.2'}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="profit">
+    <mat-header-cell *matHeaderCellDef>Zysk [PLN]</mat-header-cell>
+    <mat-cell *matCellDef="let storm">{{storm.current / 2 | number:'1.2'}}</mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>

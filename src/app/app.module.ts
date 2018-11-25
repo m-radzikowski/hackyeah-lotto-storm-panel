@@ -1,16 +1,26 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
 
-import { AppComponent } from './app.component';
+import {AppComponent} from './app.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatCardModule, MatTableModule} from '@angular/material';
+import {ActiveStormsComponent} from './active-storms/active-storms.component';
+import {EventsHistoryComponent} from './events-history/events-history.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ActiveStormsComponent,
+    EventsHistoryComponent,
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    BrowserAnimationsModule,
+    MatCardModule,
+    MatTableModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
